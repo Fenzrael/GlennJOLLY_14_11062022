@@ -1,0 +1,40 @@
+{
+  "th": [
+    {
+      "id": 0,
+      "value": "First Name"
+    },
+    {
+      "id": 1,
+      "value": "Last Name"
+    },
+    {
+      "id": 2,
+      "value": "Start Date"
+    },
+    {
+      "id": 3,
+      "value": "Department"
+    },
+    {
+      "id": 4,
+      "value": "Date of Birth"
+    },
+    {
+      "id": 5,
+      "value": "Street"
+    },
+    {
+      "id": 6,
+      "value": "City"
+    },
+    {
+      "id": 7,
+      "value": "State"
+    },
+    {
+      "id": 8,
+      "value": "Zip Code"
+    }
+  ]
+}

@@ -2,23 +2,28 @@
   "departments": [
     {
       "id": 0,
-      "name": "Sales"
+      "label": "Sales",
+      "value": "Sales"
     },
     {
       "id": 1,
-      "name": "Marketing"
+      "label": "Marketing",
+      "value": "Marketing"
     },
     {
       "id": 2,
-      "name": "Engineering"
+      "label": "Engineering",
+      "value": "Engineering"
     },
     {
       "id": 3,
-      "name": "Human Resources"
+      "label": "Human Resources",
+      "value": "Human Resources"
     },
     {
       "id": 4,
-      "name": "Legal"
+      "label": "Legal",
+      "value": "Legal"
     }
   ]
 }

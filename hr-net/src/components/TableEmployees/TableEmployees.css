@@ -1,0 +1,38 @@
+.table {
+  /* border: 1px solid black; */
+  margin: 1rem 4rem;
+  background: #d7e0ba;
+  border-radius: 5px;
+}
+
+#table__employees {
+  /*  border: 1px solid black; */
+  width: 100%;
+  /* display: flex;
+  flex: 0 0 100%; */
+}
+
+.table__header {
+  /* border: 1px solid black; */
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table__row {
+  /* border: 1px solid black; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sorting {
+  /* border: 1px solid black; */
+  min-width: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table__icon {
+  margin-left: 0.2rem;
+}
