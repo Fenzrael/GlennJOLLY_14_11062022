@@ -1,7 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import "./EmployeesManager.css";
 
-const EmployeesManager = () => {
+const EmployeesManager = ({ numberOfEntries, setNumberOfEntries }) => {
+  console.log(numberOfEntries);
+
+  /* const handleSelect = () => {}; */
   return (
     <div className="wrapper">
       <h2 className="wrapper__title">Current Employees</h2>
@@ -12,6 +16,7 @@ const EmployeesManager = () => {
             name="wrapper__employeesTableLength"
             id="wrapper__employeesTableLength"
             aria-controls="employeesTableLength"
+            onChange={(e) => setNumberOfEntries(e.target.value)}
           >
             <option value="10">10</option>
             <option value="25">25</option>

@@ -1,0 +1,26 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+  font-size: 24rem;
+  color: #5f730e;
+}
+
+.error__description {
+  font-size: 1.5rem;
+  color: #5f730e;
+}
+
+@media only screen and (max-width: 600px) {
+  .error__status {
+    font-size: 18rem;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .error__status {
+    font-size: 10rem;
+  }
+}

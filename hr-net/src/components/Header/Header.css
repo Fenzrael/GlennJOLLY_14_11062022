@@ -64,7 +64,7 @@
   font-size: 1.2rem;
 }
 
-@media only screen and (max-width: 705px) {
+@media only screen and (max-width: 720px) {
   .header__title {
     font-size: 2rem;
   }
@@ -73,9 +73,37 @@
     font-size: 0.9rem;
     margin-right: 0;
   }
+
+  .nav__information {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .header__title {
+    padding: 0.5rem;
+    top: 30%;
+  }
+
+  .nav__information {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    margin: 0 0 0.2rem 0;
+  }
 }
 
 @media only screen and (max-width: 440px) {
+  .header__title {
+    top: 35%;
+  }
+
+  .nav__information {
+    margin: 0;
+    font-size: 0.7rem;
+  }
   .header__homeLink {
     width: 5rem;
     height: 5rem;
@@ -84,6 +112,13 @@
   .nav__employeesLink {
     font-size: 0.5rem;
   }
+
+  .nav__information {
+    padding: 0.1rem;
+  }
+}
+
+@media only screen and (max-width: 360px) {
 }
 
 @media only screen and (max-width: 321px) {

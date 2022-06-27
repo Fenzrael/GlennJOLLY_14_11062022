@@ -1,19 +1,17 @@
 .table {
   /* border: 1px solid black; */
-  margin: 1rem 4rem;
+  margin: 3rem 4rem;
   background: #d7e0ba;
   border-radius: 5px;
+  padding: 0 1rem;
 }
 
 #table__employees {
-  /*  border: 1px solid black; */
+  /* border: 1px solid black; */
   width: 100%;
-  /* display: flex;
-  flex: 0 0 100%; */
 }
 
 .table__header {
-  /* border: 1px solid black; */
   width: 100%;
   border-collapse: collapse;
 }
@@ -27,12 +25,153 @@
 
 .sorting {
   /* border: 1px solid black; */
-  min-width: 7rem;
+  width: 100%;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #5f730e;
 }
 
 .table__icon {
-  margin-left: 0.2rem;
+  margin: 0 0.2rem;
+}
+
+.table__odd {
+  /* border: 1px solid black; */
+  display: flex;
+  height: 2rem;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  margin: 1rem 0 2.5rem 0;
+}
+
+.table__odd::before {
+  content: "";
+  position: absolute;
+  width: 98%;
+  height: 10px;
+  top: -0.8rem;
+  border-top: 3px solid #5f730e;
+  border-radius: 5px;
+}
+
+.table__odd::after {
+  content: "";
+  position: absolute;
+  width: 98%;
+  height: 10px;
+  bottom: -0.8rem;
+  border-bottom: 3px solid #5f730e;
+  border-radius: 5px;
+}
+
+.odd__empty {
+  color: #5f730e;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.2rem;
+  padding: 1rem;
+}
+
+.table__td {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  color: #5f730e;
+  font-weight: bold;
+  /* padding: 1rem 0.2rem 1rem 0; */
+}
+
+@media only screen and (max-width: 769px) {
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
+  .table {
+    padding: 1rem;
+    position: relative;
+  }
+
+  .table__row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .sorting {
+    /* display: block; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: auto;
+    margin-bottom: 0;
+    margin: 1rem 0;
+    text-align: left;
+    /* border: 1px solid black; */
+  }
+
+  .table::before {
+    content: "Employees Sort";
+    font-size: 1.5rem;
+  }
+
+  .table__odd {
+    display: block;
+    /* border: 1px solid black; */
+    margin: 1rem 0;
+    height: auto;
+  }
+
+  .table__td {
+    /* border: 1px solid black; */
+    margin: 0;
+    margin-top: -1px;
+    padding: 0.5rem 0 0.5rem 150px;
+    position: relative;
+    border: 1px solid whitesmoke;
+    overflow: hidden;
+  }
+
+  .table__td::before {
+    content: attr(data-label);
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 130px;
+    padding: 1rem;
+    background: #5f730e;
+    color: whitesmoke;
+  }
+
+  .table__odd::after,
+  .table__odd::before {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 476px) {
+  .table {
+    margin: 1rem 0;
+  }
+}
+
+@media only screen and (max-width: 476px) {
+  .table__td::before {
+    width: 90px;
+  }
+
+  .table__td {
+    padding: 0.5rem 0 0.5rem 100px;
+  }
 }

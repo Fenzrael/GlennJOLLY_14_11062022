@@ -1,12 +1,37 @@
 import React from "react";
 import "./TableEmployees.css";
 import theads from "../../mockedDatas/tableTheadInfos.json";
-import { useState } from "react";
-import "./TableEmployees.css";
+import { useState, useEffect } from "react";
 
-const TableEmployees = (props) => {
-  const [icon, setIcon] = useState(false);
-  const { employeesTd } = props;
+const TableEmployees = ({ numberOfEntries, setNumberOfEntries }) => {
+  // State pour fonction affichage conditionnel des icones de tri
+  const [iconId, setIconId] = useState(null);
+  const [order, setOrder] = useState("asc");
+
+  // State pour les datas recuperees dans le localStorage
+  const [dataEmployees, setDataEmployees] = useState();
+
+  // Recuperation data localStorage
+  useEffect(() => {
+    let data = JSON.parse(localStorage.getItem("employeesLocalStorage"));
+    setDataEmployees(data);
+  }, []);
+
+  // fonction affichage conditionnel des icones de tri
+  const onClickOrder = (id) => {
+    setIconId(id);
+    setOrder(order === "asc" ? "desc" : "asc");
+  };
+
+  const manageNumberOfEntries = () => {
+    switch (dataEmployees) {
+      case dataEmployees.length >= 10 && dataEmployees.length <= 25:
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
     <section className="wrapper__table table">
       <table
@@ -16,6 +41,7 @@ const TableEmployees = (props) => {
       >
         <thead className="table__header">
           <tr role="row" className="table__row">
+            {/* Affichage des theads(titres de colonnes) avec un map */}
             {theads.th.map((el) => {
               return (
                 <th
@@ -27,21 +53,69 @@ const TableEmployees = (props) => {
                   rowSpan="1"
                   colSpan="1"
                   aria-label={`${el.value}: activate to sort column ascending.`}
-                  onClick={() => setIcon(true)}
+                  onClick={() => onClickOrder(el.id)}
                 >
                   {el.value}
-                  <i className="fa-solid fa-sort table__icon"></i>
+                  {iconId === el.id ? (
+                    order === "asc" ? (
+                      <i className="fa-solid fa-sort-up table__icon"></i>
+                    ) : (
+                      <i className="fa-solid fa-sort-down table__icon"></i>
+                    )
+                  ) : (
+                    <i className="fa-solid fa-sort table__icon"></i>
+                  )}
                 </th>
               );
             })}
           </tr>
         </thead>
         <tbody>
-          {/*  {employeesTd.map((el) => (
-            <tr key={el.id} className="table__odd">
-              {}
-            </tr>
-          ))} */}
+          <>
+            {/* Affichage des differents employes repartis grace aux tr/td */}
+            {dataEmployees?.length >= 1 ? (
+              dataEmployees.map((el, index) => {
+                return (
+                  <tr className="table__odd odd" key={index}>
+                    <td className="table__td" data-label="First Name">
+                      {el.firstName}
+                    </td>
+                    <td className="table__td" data-label="Last Name">
+                      {el.lastName}
+                    </td>
+                    <td className="table__td" data-label="Start Date">
+                      {el.startDate}
+                    </td>
+                    <td className="table__td" data-label="Department">
+                      {el.department}
+                    </td>
+                    <td className="table__td" data-label="Date of Birth">
+                      {el.dateOfBirth}
+                    </td>
+                    <td className="table__td" data-label="Street">
+                      {el.street}
+                    </td>
+                    <td className="table__td" data-label="City">
+                      {el.city}
+                    </td>
+                    <td className="table__td" data-label="State">
+                      {el.state}
+                    </td>
+                    <td className="table__td" data-label="Zip Code">
+                      {el.zipCode}
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              /* Valeur td si zero employes enregistrer dans le localstorage */
+              <tr className="table__odd odd">
+                <td colSpan="9" className="odd__empty">
+                  No datas available in table
+                </td>
+              </tr>
+            )}
+          </>
         </tbody>
       </table>
     </section>

@@ -5,7 +5,7 @@ import "./Header.css";
 const Header = () => {
   const currentLocation = useLocation().pathname;
 
-  function homeNav() {
+  function homeStyleNav() {
     return (
       <NavLink to="/employees-list" className="nav__employeesLink">
         View Current Employees
@@ -13,7 +13,7 @@ const Header = () => {
     );
   }
 
-  function employeesNav() {
+  function otherPageStyleNav() {
     return <p className="nav__information">Click Logo to return Home</p>;
   }
 
@@ -28,7 +28,7 @@ const Header = () => {
       </NavLink>
       <h1 className="header__title">Hrnet</h1>
       <nav className="header__nav nav">
-        {currentLocation === "/employees-list" ? employeesNav() : homeNav()}
+        {currentLocation !== "/" ? otherPageStyleNav() : homeStyleNav()}
       </nav>
     </div>
   );
