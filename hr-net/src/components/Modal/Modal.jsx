@@ -1,8 +1,8 @@
 import React from "react";
 import "./Modal.css";
 
-const Modal = ({ isOpen, text }) => {
-  return (
+const Modal = ({ isOpen, onClose, handleValidate, text }) => {
+  return ( isOpen &&
     <div className="container">
       <div className="container__backgroundOpacity">
         <div
@@ -10,13 +10,15 @@ const Modal = ({ isOpen, text }) => {
           role="dialog"
           aria-describedby="dialogDescription"
         >
+          <p>sdsqdsqdsqds</p>
           <button
             className="container__buttonClose buttonClose"
-            onClick={isOpen}
+            onClick={onClose}
           >
             <i className="fa-solid fa-circle-xmark buttonClose__Icon"></i>
           </button>
           <p id="dialogDescription">{text}</p>
+          <button onClick={() => handleValidate()}>Validate</button>
         </div>
       </div>
     </div>

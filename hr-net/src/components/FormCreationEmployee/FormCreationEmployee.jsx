@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import departments from "../../mockedDatas/departments.json";
 import states from "../../mockedDatas/states.json";
+import Modal from "../Modal/Modal";
 /* import { useRef } from "react"; */
 import "./FormCreationEmployee.css";
 
-const FormCreationEmployee = () => {
+const FormCreationEmployee = ({ onClickSave }) => {
   // State permettant d'initialiser a false(faux) pour l'utiliser afin d'ouvrir modal(react-plugin-modal)
-  /* const [isOpenModal, setIsOpenModal] = useState(false); */
-
+  const [isOpenModal, setIsOpenModal] = useState(false)
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [dateOfBirth, setDateOfBirth] = useState();
@@ -31,8 +31,16 @@ const FormCreationEmployee = () => {
     htmlTag.reset();
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onClickSubmit = () => {
+    setIsOpenModal(true);
+  }
+
+  const handleValidate = () => {
+    submitForm();
+    setIsOpenModal(false);
+  }
+
+  const submitForm = () => {
     const dataEmployeeCreation = {
       firstName,
       lastName,
@@ -64,7 +72,7 @@ const FormCreationEmployee = () => {
         action="#"
         id="create__employee"
         className="container__form"
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => e.preventDefault()}
       >
         <div className="container__input">
           <label htmlFor="firstName">First Name</label>
@@ -158,8 +166,9 @@ const FormCreationEmployee = () => {
             })}
           </select>
         </div>
-        <button className="container__button">Save</button>
+        <button className="container__button" onClick={onClickSubmit}>Save</button>
       </form>
+      <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} handleValidate={handleValidate} text={"Etes-vous sûr ?"} />
     </div>
   );
 };

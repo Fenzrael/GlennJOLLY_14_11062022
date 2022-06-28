@@ -2,10 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./EmployeesManager.css";
 
-const EmployeesManager = ({ numberOfEntries, setNumberOfEntries }) => {
-  console.log(numberOfEntries);
-
-  /* const handleSelect = () => {}; */
+const EmployeesManager = ({ setSearch, setNumberOfEntries }) => {
   return (
     <div className="wrapper">
       <h2 className="wrapper__title">Current Employees</h2>
@@ -31,6 +28,7 @@ const EmployeesManager = ({ numberOfEntries, setNumberOfEntries }) => {
             Search:
             <input
               type="search"
+              onChange={(e) => setSearch(e.target.value)}
               aria-controls="employeesTableFilter"
               id="wrapper__employeesTableFilter"
             />

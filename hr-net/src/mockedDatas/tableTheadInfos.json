@@ -2,38 +2,47 @@
   "th": [
     {
       "id": 0,
+      "propertyName": "firstName",
       "value": "First Name"
     },
     {
       "id": 1,
+      "propertyName": "lastName",
       "value": "Last Name"
     },
     {
       "id": 2,
+      "propertyName": "startDate",
       "value": "Start Date"
     },
     {
       "id": 3,
+      "propertyName": "department",
       "value": "Department"
     },
     {
       "id": 4,
+      "propertyName": "dateOfBirth",
       "value": "Date of Birth"
     },
     {
       "id": 5,
+      "propertyName": "street",
       "value": "Street"
     },
     {
       "id": 6,
+      "propertyName": "city",
       "value": "City"
     },
     {
       "id": 7,
+      "propertyName": "state",
       "value": "State"
     },
     {
       "id": 8,
+      "propertyName": "zipCode",
       "value": "Zip Code"
     }
   ]

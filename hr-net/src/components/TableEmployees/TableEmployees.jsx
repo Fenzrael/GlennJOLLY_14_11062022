@@ -3,35 +3,50 @@ import "./TableEmployees.css";
 import theads from "../../mockedDatas/tableTheadInfos.json";
 import { useState, useEffect } from "react";
 
-const TableEmployees = ({ numberOfEntries, setNumberOfEntries }) => {
+const TableEmployees = ({ dataProps }) => {
   // State pour fonction affichage conditionnel des icones de tri
-  const [iconId, setIconId] = useState(null);
-  const [order, setOrder] = useState("asc");
-
-  // State pour les datas recuperees dans le localStorage
-  const [dataEmployees, setDataEmployees] = useState();
-
-  // Recuperation data localStorage
-  useEffect(() => {
-    let data = JSON.parse(localStorage.getItem("employeesLocalStorage"));
-    setDataEmployees(data);
-  }, []);
+  const [orderProperty, setOrderProperty] = useState(null);
+  const [order, setOrder] = useState("");
+  const [data, setData] = useState([]);
 
   // fonction affichage conditionnel des icones de tri
-  const onClickOrder = (id) => {
-    setIconId(id);
+  const onClickOrder = (propertyName) => {
+    setOrderProperty(propertyName);
     setOrder(order === "asc" ? "desc" : "asc");
   };
 
-  const manageNumberOfEntries = () => {
-    switch (dataEmployees) {
-      case dataEmployees.length >= 10 && dataEmployees.length <= 25:
-        break;
+  useEffect(() => {
+    setData(dataProps);
+  }, [dataProps]);
 
-      default:
-        break;
-    }
-  };
+  useEffect(() => {
+    if (null === orderProperty) return;
+
+    const newData = [...data];
+
+    newData.sort(function(a, b) {
+      if ("asc" === order) {
+        if (a[orderProperty] > b[orderProperty]) {
+          return 1;
+        }
+        if (a[orderProperty] < b[orderProperty]) {
+          return -1;
+        }
+        return 0;
+      } else {
+        if (a[orderProperty] > b[orderProperty]) {
+          return -1;
+        }
+        if (a[orderProperty] < b[orderProperty]) {
+          return 1;
+        }
+        return 0;
+      }
+    });
+
+    setData(newData)
+  }, [orderProperty, order])
+
   return (
     <section className="wrapper__table table">
       <table
@@ -53,11 +68,11 @@ const TableEmployees = ({ numberOfEntries, setNumberOfEntries }) => {
                   rowSpan="1"
                   colSpan="1"
                   aria-label={`${el.value}: activate to sort column ascending.`}
-                  onClick={() => onClickOrder(el.id)}
+                  onClick={() => onClickOrder(el.propertyName)}
                 >
                   {el.value}
-                  {iconId === el.id ? (
-                    order === "asc" ? (
+                  {orderProperty === el.propertyName ? (
+                    order === "desc" ? (
                       <i className="fa-solid fa-sort-up table__icon"></i>
                     ) : (
                       <i className="fa-solid fa-sort-down table__icon"></i>
@@ -73,8 +88,8 @@ const TableEmployees = ({ numberOfEntries, setNumberOfEntries }) => {
         <tbody>
           <>
             {/* Affichage des differents employes repartis grace aux tr/td */}
-            {dataEmployees?.length >= 1 ? (
-              dataEmployees.map((el, index) => {
+            {data?.length >= 1 ? (
+              data.map((el, index) => {
                 return (
                   <tr className="table__odd odd" key={index}>
                     <td className="table__td" data-label="First Name">

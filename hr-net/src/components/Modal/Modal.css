@@ -15,7 +15,6 @@
 }
 
 .container__modal {
-  display: none;
   vertical-align: middle;
   position: relative;
   z-index: 2;
