@@ -3,8 +3,9 @@ import "./TableEmployees.css";
 import theads from "../../mockedDatas/tableTheadInfos.json";
 import { useState, useEffect } from "react";
 
+// props dataProps reliee au fichier employeesList.jsx
 const TableEmployees = ({ dataProps }) => {
-  // State pour fonction affichage conditionnel des icones de tri
+  // State pour fonction affichage conditionnel des icones de tri et de l'ordre des elements
   const [orderProperty, setOrderProperty] = useState(null);
   const [order, setOrder] = useState("");
   const [data, setData] = useState([]);
@@ -15,16 +16,20 @@ const TableEmployees = ({ dataProps }) => {
     setOrder(order === "asc" ? "desc" : "asc");
   };
 
+  // Recuperation des datas
   useEffect(() => {
     setData(dataProps);
   }, [dataProps]);
 
+  // Hook useEffect pour tri des elements , hook actif a chaque changement des states orderProperty et order
   useEffect(() => {
     if (null === orderProperty) return;
 
+    // spread operator destructurant les datas du state data contenant la props dataProps
     const newData = [...data];
 
-    newData.sort(function(a, b) {
+    // utilisation de la methode native js sort pour ordonner les elements
+    newData.sort(function (a, b) {
       if ("asc" === order) {
         if (a[orderProperty] > b[orderProperty]) {
           return 1;
@@ -32,6 +37,7 @@ const TableEmployees = ({ dataProps }) => {
         if (a[orderProperty] < b[orderProperty]) {
           return -1;
         }
+        // Si aucune condition dessus remplit renvoit zero(rien ne se passe)
         return 0;
       } else {
         if (a[orderProperty] > b[orderProperty]) {
@@ -44,8 +50,8 @@ const TableEmployees = ({ dataProps }) => {
       }
     });
 
-    setData(newData)
-  }, [orderProperty, order])
+    setData(newData);
+  }, [orderProperty, order]);
 
   return (
     <section className="wrapper__table table">
@@ -71,6 +77,7 @@ const TableEmployees = ({ dataProps }) => {
                   onClick={() => onClickOrder(el.propertyName)}
                 >
                   {el.value}
+                  {/* Affichage conditionnel elements et icones relies aux states order et orderProperty */}
                   {orderProperty === el.propertyName ? (
                     order === "desc" ? (
                       <i className="fa-solid fa-sort-up table__icon"></i>

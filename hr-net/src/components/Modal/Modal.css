@@ -15,8 +15,11 @@
 }
 
 .container__modal {
-  vertical-align: middle;
   position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
   max-width: 31.25rem;
   box-sizing: border-box;
@@ -25,5 +28,32 @@
   padding: 1rem 1.9rem;
   border-radius: 8px;
   box-shadow: 0 0 10px black;
-  text-align: left;
+  margin: 0 auto;
+}
+
+.container__buttonClose {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.3rem;
+  border-radius: 50px;
+  width: 1rem;
+  border: none;
+}
+
+.container__buttonClose:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.container__validate {
+  background: rgb(111, 134, 21);
+  color: whitesmoke;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: rgb(111, 134, 21);
+}
+
+.container__validate:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }

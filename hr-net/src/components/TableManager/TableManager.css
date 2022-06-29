@@ -13,6 +13,10 @@
   justify-content: space-between;
   align-items: center;
   width: 20rem;
+  margin-bottom: 1rem;
+}
+.entries__description {
+  margin-bottom: 1rem;
 }
 
 .entries__prev,

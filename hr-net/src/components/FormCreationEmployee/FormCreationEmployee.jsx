@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import departments from "../../mockedDatas/departments.json";
 import states from "../../mockedDatas/states.json";
 import Modal from "../Modal/Modal";
-/* import { useRef } from "react"; */
 import "./FormCreationEmployee.css";
 
-const FormCreationEmployee = ({ onClickSave }) => {
+const FormCreationEmployee = () => {
   // State permettant d'initialiser a false(faux) pour l'utiliser afin d'ouvrir modal(react-plugin-modal)
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  // States gerant les datas tapees par l'utilisateur dans le formulaire
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [dateOfBirth, setDateOfBirth] = useState();
@@ -31,15 +32,18 @@ const FormCreationEmployee = ({ onClickSave }) => {
     htmlTag.reset();
   };
 
+  // Fonction parametrant l'ouverture de la modale
   const onClickSubmit = () => {
     setIsOpenModal(true);
-  }
+  };
 
+  // Fonction parametrant la validation de la modale + sa fermeture
   const handleValidate = () => {
     submitForm();
     setIsOpenModal(false);
-  }
+  };
 
+  // Fonction soumission formulaire
   const submitForm = () => {
     const dataEmployeeCreation = {
       firstName,
@@ -72,6 +76,7 @@ const FormCreationEmployee = ({ onClickSave }) => {
         action="#"
         id="create__employee"
         className="container__form"
+        /*  onSubmit empeche la soumission native du formulaire */
         onSubmit={(e) => e.preventDefault()}
       >
         <div className="container__input">
@@ -166,9 +171,16 @@ const FormCreationEmployee = ({ onClickSave }) => {
             })}
           </select>
         </div>
-        <button className="container__button" onClick={onClickSubmit}>Save</button>
+        <button className="container__button" onClick={onClickSubmit}>
+          Save
+        </button>
       </form>
-      <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} handleValidate={handleValidate} text={"Etes-vous sûr ?"} />
+      <Modal
+        isOpen={isOpenModal}
+        onClose={() => setIsOpenModal(false)}
+        handleValidate={handleValidate}
+        text={"Are you sure ?"}
+      />
     </div>
   );
 };

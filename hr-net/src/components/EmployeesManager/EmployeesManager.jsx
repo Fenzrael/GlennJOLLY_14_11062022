@@ -1,7 +1,7 @@
 import React from "react";
-import { useState } from "react";
 import "./EmployeesManager.css";
 
+// props setSearch(recherche), setNumberOfEntries(nombre d'entrees) relies a employeesList.jsx
 const EmployeesManager = ({ setSearch, setNumberOfEntries }) => {
   return (
     <div className="wrapper">
@@ -13,6 +13,7 @@ const EmployeesManager = ({ setSearch, setNumberOfEntries }) => {
             name="wrapper__employeesTableLength"
             id="wrapper__employeesTableLength"
             aria-controls="employeesTableLength"
+            /* Au changement on capture la donnee selectionne par l'utilisateur dans le state numberOfEntries*/
             onChange={(e) => setNumberOfEntries(e.target.value)}
           >
             <option value="10">10</option>
@@ -28,6 +29,7 @@ const EmployeesManager = ({ setSearch, setNumberOfEntries }) => {
             Search:
             <input
               type="search"
+              /* Au changement on capture la donnee selectionne par l'utilisateur dans le state search*/
               onChange={(e) => setSearch(e.target.value)}
               aria-controls="employeesTableFilter"
               id="wrapper__employeesTableFilter"

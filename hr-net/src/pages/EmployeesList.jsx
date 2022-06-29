@@ -5,7 +5,9 @@ import TableEmployees from "../components/TableEmployees/TableEmployees";
 import TableManager from "../components/TableManager/TableManager";
 import { useEffect } from "react";
 
+// page des employes
 const EmployeesList = () => {
+  // States gerant respectivement le nb d'entrees, la page courante,
   const [numberOfEntries, setNumberOfEntries] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentStart, setCurrentStart] = useState(0);
@@ -31,9 +33,11 @@ const EmployeesList = () => {
     } else {
       // Ex: Page 2 ET 10 entrées par page -> start => (2 - 1) * 10 = 1 * 10 = 10
       const start = (currentPage - 1) * numberOfEntries;
+
       setCurrentStart(start);
       setCurrentEnd(start + numberOfEntries);
     }
+    console.log(currentStart);
   }, [currentPage]);
 
   useEffect(() => {
