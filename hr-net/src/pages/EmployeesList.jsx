@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 // page des employes
 const EmployeesList = () => {
-  // States gerant respectivement le nb d'entrees, la page courante,
+  // States gerant respectivement le nb d'entrees selectionnable(select 10,25,50,100), la page courante, le debut des entrees, la fin des entrees(limite changeant par rapport aux select entries selectionné => €x: page 1 = 10, page2 = 20 ...etc si nb d'entrees selectionnees egal a 10), nombre total d'employes, utilisateurs de la page, la recherche et la props totalOfElements
   const [numberOfEntries, setNumberOfEntries] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentStart, setCurrentStart] = useState(0);
@@ -25,6 +25,7 @@ const EmployeesList = () => {
     setAllEmployes(employes);
   }, []);
 
+  // useEffects gérant la pagination
   useEffect(() => {
     // Au changement de page
     if (currentPage === 1) {
@@ -37,19 +38,21 @@ const EmployeesList = () => {
       setCurrentStart(start);
       setCurrentEnd(start + numberOfEntries);
     }
-    console.log(currentStart);
   }, [currentPage]);
 
+  // slice permettant de garder le nombre d'employés par page => currentPageEmployesData stockant cette valeur dans un tableau d'objets comprenant ces utilisateurs et leurs infos
   useEffect(() => {
     const newEmployesData = allEmployes.slice(currentStart, currentEnd);
     setCurrentPageEmployesData(newEmployesData);
   }, [allEmployes, currentStart, currentEnd]);
 
+  // reinitialisation des states currentStart et currentEnd
   useEffect(() => {
     setCurrentStart(0);
     setCurrentEnd(numberOfEntries);
   }, [numberOfEntries]);
 
+  // useEffect gerant la recherche checkant si ce que tape l'utilisateur correspond a des elements de chaque employes
   useEffect(() => {
     let data = allEmployes;
 
